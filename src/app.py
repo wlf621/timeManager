@@ -1,15 +1,4 @@
-from flask import Flask, jsonify
+from flask import Flask
 
-app = Flask(__name__)
-
-
-# url 路径
-@app.route('/')
-def hello_world():
-    return {"hello":"伦飞!"}
-
-
-if __name__ == '__main__':
-    #app.debug = True
-    app.config.from_pyfile('./config.conf', silent=True)
-    app.run()
+app = Flask(__name__, template_folder='../templates')
+app.config.from_pyfile('./config.conf', silent=True)
