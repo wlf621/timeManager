@@ -4,15 +4,43 @@
     <meta charset="UTF-8">
     <title>{{title}}</title>
 </head>
+<style>
+	body
+	{
+		background-image: url('images/background.jpg')
+	}
+</style>
 
 <body>
     <h1>欢迎进入{{title}}！</h1>
-	<form name="input" action="html_form_action.php" method="get">
-		{{time}}: <input type="text" name="time">
-		{{event}}：<input type="text" name="event">
-
+	<form name="input"  method="get">
+		年:
+		<select>
+			{% for year in years %}
+			<option>{{year}}</option>
+			{% endfor %}
+		</select>
+		月:
+		<select>
+			{% for month in months %}
+			<option>{{month}}</option>
+			{% endfor %}
+		</select>
+		日:
+		<select>
+			{% for day in days %}
+			<option>{{day}}</option>
+			{% endfor %}
+		</select>
+		时:
+		<select>
+			{% for hour in hours %}
+			<option>{{hour}}</option>
+			{% endfor %}
+		</select>
+		事件：<input type="text" name="event">
 		<br>
-		<input type="submit" value={{submit}}>
+		<input type="submit" value=提交>
 	</form>
 </body>
 </html>
