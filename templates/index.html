@@ -3,6 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <title>{{title}}</title>
+
+	<meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+    <link rel="stylesheet" href='/css/font.css'>
+    <link rel="stylesheet" href='/css/index.css'>
 </head>
 <style>
 	body
@@ -12,35 +17,67 @@
 </style>
 
 <body>
-    <h1>欢迎进入{{title}}！</h1>
-	<form name="input"  method="get">
-		年:
-		<select>
-			{% for year in years %}
-			<option>{{year}}</option>
-			{% endfor %}
-		</select>
-		月:
-		<select>
-			{% for month in months %}
-			<option>{{month}}</option>
-			{% endfor %}
-		</select>
-		日:
-		<select>
-			{% for day in days %}
-			<option>{{day}}</option>
-			{% endfor %}
-		</select>
-		时:
-		<select>
-			{% for hour in hours %}
-			<option>{{hour}}</option>
-			{% endfor %}
-		</select>
-		事件：<input type="text" name="event">
-		<br>
-		<input type="submit" value=提交>
-	</form>
+	<div class="navbar">
+        <input type="checkbox" id="checkbox">
+        <label for="checkbox">
+            <i class="fa fa-bars" aria-hidden="true"></i>
+        </label>
+        <ul>
+            <li>
+                <img src='/images/avatar.jpeg' alt="">
+                <span>欢迎您！</span>
+            </li>
+            <li>
+                <a href="javascript:void(0)">
+                    <i class="fa fa-home" aria-hidden="true"></i>
+                    <span>首页</span>
+                </a>
+            </li>
+            <li>
+                <a href="javascript:void(0)">
+                    <i class="fa fa-user-circle-o" aria-hidden="true"></i>
+                    <span>用户列表</span>
+                </a>
+            </li>
+            <li>
+                <a href="javascript:void(0)">
+                    <i class="fa fa-th-large" aria-hidden="true"></i>
+                    <span>功能列表</span>
+                </a>
+            </li>
+        </ul>
+        <div class="main">
+            <h1>欢迎进入{{title}}！<br></h1>
+
+	        <form name="input"  method="get">
+    		    年:
+        		<select>
+	        		{% for year in years %}
+		        	<option>{{year}}</option>
+			        {% endfor %}
+        		</select>
+	        	月:
+		        <select>
+    		    	{% for month in months %}
+	    		    <option>{{month}}</option>
+    		    	{% endfor %}
+        		</select>
+	        	日:
+		        <select>
+    			    {% for day in days %}
+    	    		<option>{{day}}</option>
+	    	    	{% endfor %}
+    	    	</select>
+	    	    时:
+    		    <select>
+        			{% for hour in hours %}
+	        		<option>{{hour}}</option>
+		        	{% endfor %}
+		        </select>
+        		事件：<input type="text" name="event">
+	        	<br>
+		        <input type="submit" value=提交>
+	        </form>
+        </div>
 </body>
 </html>
