@@ -8,6 +8,9 @@
     <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
     <link rel="stylesheet" href='/css/font.css'>
     <link rel="stylesheet" href='/css/index.css'>
+
+	<script src="https://cdn.lyshark.com/javascript/jquery/3.5.1/jquery.min.js"></script>
+	<script src="https://cdn.lyshark.com/javascript/echarts/5.0.0/echarts.min.js"></script>
 </head>
 <style>
 	body
@@ -21,6 +24,7 @@
         <input type="checkbox" id="checkbox">
         <label for="checkbox">
             <i class="fa fa-bars" aria-hidden="true"></i>
+            欢迎进入{{title}}！
         </label>
         <ul>
             <li>
@@ -46,38 +50,138 @@
                 </a>
             </li>
         </ul>
-        <div class="main">
-            <h1>欢迎进入{{title}}！<br></h1>
 
-	        <form name="input"  method="get">
+        <div class="main">
+	        <form action="/result" method="post">
     		    年:
-        		<select>
+        		<select name="year">
 	        		{% for year in years %}
 		        	<option>{{year}}</option>
 			        {% endfor %}
         		</select>
 	        	月:
-		        <select>
+		        <select name="month">
     		    	{% for month in months %}
 	    		    <option>{{month}}</option>
     		    	{% endfor %}
         		</select>
 	        	日:
-		        <select>
+		        <select name="day">
     			    {% for day in days %}
     	    		<option>{{day}}</option>
 	    	    	{% endfor %}
     	    	</select>
 	    	    时:
-    		    <select>
+    		    <select name="hour">
         			{% for hour in hours %}
 	        		<option>{{hour}}</option>
 		        	{% endfor %}
 		        </select>
         		事件：<input type="text" name="event">
-	        	<br>
+                分类:
+    		    <select name="type">
+        			{% for type in types %}
+	        		<option>{{type}}</option>
+		        	{% endfor %}
+		        </select>
+                <br>
 		        <input type="submit" value=提交>
 	        </form>
         </div>
+
+        <div class="main">
+			<div class="" style="width: 60%;height: 100%; float: both; top: 6000px">
+					        <form action="/" method="get">
+    		    选择某一天：
+                <br>
+                年:
+        		<select name="show_year">
+	        		{% for year in years %}
+		        	<option>{{year}}</option>
+			        {% endfor %}
+        		</select>
+	        	月:
+		        <select name="show_month">
+    		    	{% for month in months %}
+	    		    <option>{{month}}</option>
+    		    	{% endfor %}
+        		</select>
+	        	日:
+		        <select name="show_day">
+    			    {% for day in days %}
+    	    		<option>{{day}}</option>
+	    	    	{% endfor %}
+    	    	</select>
+                <br>
+		        <input type="submit" value=提交>
+	        </form>
+				<div style="margin-top: 60px">
+					<h3 class="panel-title">事件统计</h3>
+				</div>
+				<div class="panel-body">
+					<div id="main" style="width:100%; height: 300px"></div>
+				</div>
+			</div>
+        </div>
 </body>
+
+<script type="text/javascript" charset="UTF-8">
+	var kv = new Array();
+	var keys = new Array();
+	var values = new Array();
+	kv = {{ data | safe }}
+
+	for(var logkey in kv){
+		keys.push(logkey);
+		values.push(kv[logkey]);
+	}
+	var display = function() {
+		var main1 = echarts.init(document.getElementById("main1"));
+		var option = {
+			xAxis: {
+				type: 'category',
+				data: keys
+			},
+			yAxis: {
+				type: 'value'
+			},
+			series: [{
+				data: values,
+				type: 'bar'
+			}]
+		};
+		main1.setOption(option,true);
+	};
+	display();
+</script>
+
+<script type="text/javascript" charset="UTF-8">
+	var kv = new Array();
+	kv = {{ data | safe }}
+	var test = new Array();
+	for(var logkey in kv){
+		test.push( {value:kv[logkey], name:logkey} )
+	}
+	var display = function(){
+		var main = echarts.init(document.getElementById("main"));
+		var option = {
+			legend: {
+				orient: 'vertical',
+				left: 'left',
+			},
+			series: [
+				{
+					type: 'pie',
+					radius: '70%',
+					center: ['50%', '50%'],
+					detail: {formatter:'{value}'},
+					data: test
+				}
+			]
+		};
+		main.setOption(option,true);
+	};
+	display();
+</script>
+
 </html>
