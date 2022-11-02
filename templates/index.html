@@ -4,125 +4,129 @@
     <meta charset="UTF-8">
     <title>{{title}}</title>
 
-	<meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
     <link rel="stylesheet" href='/css/font.css'>
     <link rel="stylesheet" href='/css/index.css'>
 
-	<script src="https://cdn.lyshark.com/javascript/jquery/3.5.1/jquery.min.js"></script>
-	<script src="https://cdn.lyshark.com/javascript/echarts/5.0.0/echarts.min.js"></script>
+    <script src="https://cdn.lyshark.com/javascript/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.lyshark.com/javascript/echarts/5.0.0/echarts.min.js"></script>
 </head>
 <style>
 	body
 	{
 		background-image: url('images/background.jpeg');
 	}
+
+
+
+
 </style>
 
 <body>
-	<div class="navbar">
-        <input type="checkbox" id="checkbox">
-        <label for="checkbox">
-            <i class="fa fa-bars" aria-hidden="true"></i>
-            欢迎进入{{title}}！
-        </label>
-        <ul>
-            <li>
-                <img src='/images/avatar.jpeg' alt="">
-                <span>欢迎您！</span>
-            </li>
-            <li>
-                <a href="javascript:void(0)">
-                    <i class="fa fa-home" aria-hidden="true"></i>
-                    <span>首页</span>
-                </a>
-            </li>
-            <li>
-                <a href="javascript:void(0)">
-                    <i class="fa fa-user-circle-o" aria-hidden="true"></i>
-                    <span>用户列表</span>
-                </a>
-            </li>
-            <li>
-                <a href="javascript:void(0)">
-                    <i class="fa fa-th-large" aria-hidden="true"></i>
-                    <span>功能列表</span>
-                </a>
-            </li>
-        </ul>
+<div class="navbar">
+    <input type="checkbox" id="checkbox">
+    <label for="checkbox">
+        <i class="fa fa-bars" aria-hidden="true"></i>
+        欢迎进入{{title}}！
+    </label>
+    <ul>
+        <li>
+            <img src='/images/avatar.jpeg' alt="">
+            <span>欢迎您！</span>
+        </li>
+        <li>
+            <a href="javascript:void(0)">
+                <i class="fa fa-home" aria-hidden="true"></i>
+                <span>首页</span>
+            </a>
+        </li>
+        <li>
+            <a href="javascript:void(0)">
+                <i class="fa fa-user-circle-o" aria-hidden="true"></i>
+                <span>用户列表</span>
+            </a>
+        </li>
+        <li>
+            <a href="javascript:void(0)">
+                <i class="fa fa-th-large" aria-hidden="true"></i>
+                <span>功能列表</span>
+            </a>
+        </li>
+    </ul>
 
-        <div class="main">
-	        <form action="/result" method="post">
-    		    年:
-        		<select name="year">
-	        		{% for year in years %}
-		        	<option>{{year}}</option>
-			        {% endfor %}
-        		</select>
-	        	月:
-		        <select name="month">
-    		    	{% for month in months %}
-	    		    <option>{{month}}</option>
-    		    	{% endfor %}
-        		</select>
-	        	日:
-		        <select name="day">
-    			    {% for day in days %}
-    	    		<option>{{day}}</option>
-	    	    	{% endfor %}
-    	    	</select>
-	    	    时:
-    		    <select name="hour">
-        			{% for hour in hours %}
-	        		<option>{{hour}}</option>
-		        	{% endfor %}
-		        </select>
-        		事件：<input type="text" name="event">
+    <div class="main">
+        <div style="margin-top: 0px; float:left">
+            <form action="/result" method="post">
+                年:
+                <select name="year">
+                    {% for year in years %}
+                    <option>{{year}}</option>
+                    {% endfor %}
+                </select>
+                月:
+                <select name="month">
+                    {% for month in months %}
+                    <option>{{month}}</option>
+                    {% endfor %}
+                </select>
+                日:
+                <select name="day">
+                    {% for day in days %}
+                    <option>{{day}}</option>
+                    {% endfor %}
+                </select>
+                时:
+                <select name="hour">
+                    {% for hour in hours %}
+                    <option>{{hour}}</option>
+                    {% endfor %}
+                </select>
+                事件：<input type="text" name="event">
                 分类:
-    		    <select name="type">
-        			{% for type in types %}
-	        		<option>{{type}}</option>
-		        	{% endfor %}
-		        </select>
+                <select name="type">
+                    {% for type in types %}
+                    <option>{{type}}</option>
+                    {% endfor %}
+                </select>
                 <br>
-		        <input type="submit" value=提交>
-	        </form>
+                <input type="submit" value=提交>
+            </form>
         </div>
-
-        <div class="main">
-			<div class="" style="width: 60%;height: 100%; float: both; top: 6000px">
-					        <form action="/" method="get">
-    		    选择某一天：
+        <div style="margin-top: 30px; float:left">
+            <form action="/" method="get">
+                选择某一天：
                 <br>
                 年:
-        		<select name="show_year">
-	        		{% for year in years %}
-		        	<option>{{year}}</option>
-			        {% endfor %}
-        		</select>
-	        	月:
-		        <select name="show_month">
-    		    	{% for month in months %}
-	    		    <option>{{month}}</option>
-    		    	{% endfor %}
-        		</select>
-	        	日:
-		        <select name="show_day">
-    			    {% for day in days %}
-    	    		<option>{{day}}</option>
-	    	    	{% endfor %}
-    	    	</select>
+                <select name="show_year">
+                    {% for year in years %}
+                    <option>{{year}}</option>
+                    {% endfor %}
+                </select>
+                月:
+                <select name="show_month">
+                    {% for month in months %}
+                    <option>{{month}}</option>
+                    {% endfor %}
+                </select>
+                日:
+                <select name="show_day">
+                    {% for day in days %}
+                    <option>{{day}}</option>
+                    {% endfor %}
+                </select>
                 <br>
-		        <input type="submit" value=提交>
-	        </form>
-				<div style="margin-top: 60px">
-					<h3 class="panel-title">事件统计</h3>
-				</div>
-				<div class="panel-body">
-					<div id="main" style="width:100%; height: 300px"></div>
-				</div>
-			</div>
+                <input type="submit" value=提交>
+            </form>
         </div>
+        <div style="margin-top: 30px">
+            <h3 class="panel-title">事件统计</h3>
+        </div>
+        <div style="margin-top: 30px">
+            <div id="main" style="width:300px; height: 300px"></div>
+        </div>
+    </div>
+</div>
 </body>
 
 <script type="text/javascript" charset="UTF-8">
@@ -153,6 +157,10 @@
 		main1.setOption(option,true);
 	};
 	display();
+
+
+
+
 </script>
 
 <script type="text/javascript" charset="UTF-8">
@@ -165,10 +173,6 @@
 	var display = function(){
 		var main = echarts.init(document.getElementById("main"));
 		var option = {
-			legend: {
-				orient: 'vertical',
-				left: 'left',
-			},
 			series: [
 				{
 					type: 'pie',
@@ -182,6 +186,10 @@
 		main.setOption(option,true);
 	};
 	display();
+
+
+
+
 </script>
 
 </html>

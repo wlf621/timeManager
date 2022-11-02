@@ -17,6 +17,7 @@ body{
 .main{
     flex: 1;
     height: calc(100vh - 43px);
+    flex-direction: column;
     position: relative;
     top: 43px;
     display: flex;
