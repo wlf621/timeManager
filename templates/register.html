@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>用户注册</title>
+  <style>
+    body {
+      background: url('images/login.jpg') no-repeat;
+      background-size: 100% 130%;
+    }
+
+    #login_box {
+      width: 20%;
+      height: 400px;
+      background-color: #00000060;
+      margin: auto;
+      margin-top: 10%;
+      text-align: center;
+      border-radius: 10px;
+      padding: 50px 50px;
+    }
+
+    h2 {
+      color: #ffffff90;
+      margin-top: 5%;
+    }
+
+    #input-box {
+      margin-top: 5%;
+    }
+
+    span {
+      color: #fff;
+    }
+
+    input {
+      border: 0;
+      width: 60%;
+      font-size: 15px;
+      color: #fff;
+      background: transparent;
+      border-bottom: 2px solid #fff;
+      padding: 5px 10px;
+      outline: none;
+      margin-top: 10px;
+    }
+
+    button {
+      margin-top: 50px;
+      width: 60%;
+      height: 30px;
+      border-radius: 10px;
+      border: 0;
+      color: #fff;
+      text-align: center;
+      line-height: 30px;
+      font-size: 15px;
+      background-image: linear-gradient(to right, #30cfd0, #330867);
+    }
+
+    #sign_up {
+      margin-top: 45%;
+      margin-left: 60%;
+    }
+
+    a {
+      color: #b94648;
+    }
+
+     input:-moz-placeholder,
+textarea:-moz-placeholder {
+    color: #fff;
+}
+input:-ms-input-placeholder,
+textarea:-ms-input-placeholder {
+    color: #fff;
+}
+input::-webkit-input-placeholder,
+textarea::-webkit-input-placeholder {
+    color: #fff ;
+}
+  </style>
+</head>
+
+<body>
+  <div id="login_box">
+    <h2>用户注册</h2>
+    <form action="/register" method="post">
+      <div id="input_box">
+        <input type="text" placeholder="请输入用户名" name="user_name">
+      </div>
+      <div class="input_box">
+        <input type="password" placeholder="请输入密码"  name="password">
+      </div>
+      <div class="input_box">
+        <input type="password" placeholder="请再次输入密码"  name="repeat_password">
+      </div>
+        <button type="submit" value=注册>注册</button>
+      <br>
+    </form>
+    <div class="msg">
+      <h2>{{result}}</h2>
+      <h4>密码必须由由小写字母、大写字母以及数字，长度大于等于8位</h4>
+    </div>
+  </div>
+</body>
+</html>

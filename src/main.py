@@ -4,6 +4,8 @@ from flask import render_template, request
 from data import data_page
 from app import app
 from data import engine
+from login import Login
+from register import Register
 
 
 @app.route('/test')
@@ -15,7 +17,7 @@ def show_oneday():
     return render_template('show.html')
 
 
-@app.route('/')
+@app.route('/index')
 def main():
     years = list(range(2022, 2100))
     months = list(range(1, 13))
@@ -40,7 +42,7 @@ def main():
         month = int(datas.get("show_month"))
         day = int(datas.get("show_day"))
         with engine.connect() as con:
-            sql = f'''select type from test where `year`={year} and `month`={month} and `day`={day};'''
+            sql = f'''select event_type from test where `year`={year} and `month`={month} and `day`={day};'''
             type_items = con.execute(sql).fetchall()
             for item in type_items:
                 if item[0] in types_cnt:
@@ -53,4 +55,7 @@ def main():
 
 if __name__ == '__main__':
     app.register_blueprint(data_page)
+    app.register_blueprint(Login)
+    app.register_blueprint(Register)
+
     app.run(host='127.0.0.1', port=5000)
