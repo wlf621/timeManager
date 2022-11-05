@@ -4,7 +4,7 @@ from flask import render_template, request, Blueprint
 from sqlalchemy.orm import sessionmaker
 
 from data import Base, engine
-from src.login import User
+from login import User
 
 Register = Blueprint('register', __name__, template_folder='../templates')
 
